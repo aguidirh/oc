@@ -1,3 +1,6 @@
+## :warning: WARNING 
+This is a temporarily forked version for oc-mirror usage only. This fork will be deleted in the future, please do not use it.
+
 # OpenShift Client - oc
 
 With OpenShift Client CLI (oc), you can create applications and manage OpenShift

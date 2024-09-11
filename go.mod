@@ -2,8 +2,6 @@ module github.com/openshift/oc
 
 go 1.22.4
 
-toolchain go1.23.0
-
 require (
 	github.com/AaronO/go-git-http v0.0.0-20161214145340-1d9485b3a98f
 	github.com/MakeNowJust/heredoc v1.0.0
@@ -21,6 +19,7 @@ require (
 	github.com/distribution/reference v0.6.0
 	github.com/docker/docker v25.0.3+incompatible
 	github.com/docker/go-units v0.5.0
+	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7
 	github.com/elazarl/goproxy v0.0.0-20230808193330-2592e75ae04a
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/fsouza/go-dockerclient v1.10.0
@@ -130,7 +129,8 @@ require (
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/hashicorp/golang-lru v1.0.2 // indirect
+	github.com/hashicorp/golang-lru/arc/v2 v2.0.5 // indirect
+	github.com/hashicorp/golang-lru/v2 v2.0.5 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/int128/listener v1.1.0 // indirect
@@ -209,5 +209,6 @@ require (
 
 replace github.com/apcera/gssapi => github.com/openshift/gssapi v0.0.0-20161010215902-5fb4217df13b
 
-// temporarily until the PR https://github.com/openshift/library-go/pull/1789 gets merged
-replace github.com/openshift/library-go => github.com/aguidirh/library-go v0.0.0-20240904161111-c18323fd4a66
+replace github.com/openshift/library-go => github.com/aguidirh/library-go v0.0.0-20240911111857-f8fdb642dea5
+
+replace github.com/distribution/distribution/v3 => github.com/aguidirh/distribution/v3 v3.0.0-beta.1.ocmirror1

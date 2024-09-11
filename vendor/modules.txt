@@ -183,16 +183,25 @@ github.com/davecgh/go-spew/spew
 # github.com/daviddengcn/go-colortext v1.0.0
 ## explicit; go 1.14
 github.com/daviddengcn/go-colortext
-# github.com/distribution/distribution/v3 v3.0.0-beta.1
+# github.com/distribution/distribution/v3 v3.0.0-beta.1 => github.com/aguidirh/distribution/v3 v3.0.0-beta.1.ocmirror1
 ## explicit; go 1.22.4
 github.com/distribution/distribution/v3
+github.com/distribution/distribution/v3/internal/dcontext
+github.com/distribution/distribution/v3/internal/requestutil
 github.com/distribution/distribution/v3/manifest
 github.com/distribution/distribution/v3/manifest/manifestlist
 github.com/distribution/distribution/v3/manifest/ocischema
+github.com/distribution/distribution/v3/manifest/schema1
 github.com/distribution/distribution/v3/manifest/schema2
 github.com/distribution/distribution/v3/metrics
 github.com/distribution/distribution/v3/registry/api/errcode
 github.com/distribution/distribution/v3/registry/api/v2
+github.com/distribution/distribution/v3/registry/client
+github.com/distribution/distribution/v3/registry/client/auth
+github.com/distribution/distribution/v3/registry/client/auth/challenge
+github.com/distribution/distribution/v3/registry/client/transport
+github.com/distribution/distribution/v3/registry/storage/cache
+github.com/distribution/distribution/v3/registry/storage/cache/memory
 # github.com/distribution/reference v0.6.0
 ## explicit; go 1.20
 github.com/distribution/reference
@@ -232,6 +241,9 @@ github.com/docker/go-metrics
 # github.com/docker/go-units v0.5.0
 ## explicit
 github.com/docker/go-units
+# github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7
+## explicit
+github.com/docker/libtrust
 # github.com/elazarl/goproxy v0.0.0-20230808193330-2592e75ae04a
 ## explicit
 github.com/elazarl/goproxy
@@ -433,10 +445,13 @@ github.com/hashicorp/errwrap
 # github.com/hashicorp/go-multierror v1.1.1
 ## explicit; go 1.13
 github.com/hashicorp/go-multierror
-# github.com/hashicorp/golang-lru v1.0.2
-## explicit; go 1.12
-github.com/hashicorp/golang-lru
-github.com/hashicorp/golang-lru/simplelru
+# github.com/hashicorp/golang-lru/arc/v2 v2.0.5
+## explicit; go 1.18
+github.com/hashicorp/golang-lru/arc/v2
+# github.com/hashicorp/golang-lru/v2 v2.0.5
+## explicit; go 1.18
+github.com/hashicorp/golang-lru/v2/internal
+github.com/hashicorp/golang-lru/v2/simplelru
 # github.com/imdario/mergo v0.3.13
 ## explicit; go 1.13
 github.com/imdario/mergo
@@ -762,7 +777,7 @@ github.com/openshift/client-go/user/clientset/versioned/fake
 github.com/openshift/client-go/user/clientset/versioned/scheme
 github.com/openshift/client-go/user/clientset/versioned/typed/user/v1
 github.com/openshift/client-go/user/clientset/versioned/typed/user/v1/fake
-# github.com/openshift/library-go v0.0.0-20240528110646-354b673304be => github.com/aguidirh/library-go v0.0.0-20240904161111-c18323fd4a66
+# github.com/openshift/library-go v0.0.0-20240528110646-354b673304be => github.com/aguidirh/library-go v0.0.0-20240911111857-f8fdb642dea5
 ## explicit; go 1.22.4
 github.com/openshift/library-go/pkg/apps/appsserialization
 github.com/openshift/library-go/pkg/apps/appsutil
@@ -806,13 +821,6 @@ github.com/openshift/library-go/pkg/operator/resource/resourcehelper
 github.com/openshift/library-go/pkg/operator/resource/resourceread
 github.com/openshift/library-go/pkg/operator/resource/retry
 github.com/openshift/library-go/pkg/operator/v1helpers
-github.com/openshift/library-go/pkg/registry/client
-github.com/openshift/library-go/pkg/registry/client/auth
-github.com/openshift/library-go/pkg/registry/client/auth/challenge
-github.com/openshift/library-go/pkg/registry/client/transport
-github.com/openshift/library-go/pkg/registry/dcontext
-github.com/openshift/library-go/pkg/registry/storage/cache
-github.com/openshift/library-go/pkg/registry/storage/cache/memory
 github.com/openshift/library-go/pkg/security/ldapclient
 github.com/openshift/library-go/pkg/security/ldapquery
 github.com/openshift/library-go/pkg/security/ldaptestclient
@@ -1845,4 +1853,5 @@ sigs.k8s.io/structured-merge-diff/v4/value
 sigs.k8s.io/yaml
 sigs.k8s.io/yaml/goyaml.v2
 # github.com/apcera/gssapi => github.com/openshift/gssapi v0.0.0-20161010215902-5fb4217df13b
-# github.com/openshift/library-go => github.com/aguidirh/library-go v0.0.0-20240904161111-c18323fd4a66
+# github.com/openshift/library-go => github.com/aguidirh/library-go v0.0.0-20240911111857-f8fdb642dea5
+# github.com/distribution/distribution/v3 => github.com/aguidirh/distribution/v3 v3.0.0-beta.1.ocmirror1

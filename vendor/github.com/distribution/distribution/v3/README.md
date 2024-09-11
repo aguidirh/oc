@@ -1,3 +1,6 @@
+## :warning: WARNING 
+This is a temporarily forked version for oc-mirror usage only. This fork will be deleted in the future, please do not use it.
+
 <p align="center">
 <img style="align: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px;" width="238px" height="238px" src="./distribution-logo.svg" />
 </p>
