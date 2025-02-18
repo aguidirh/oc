@@ -511,7 +511,76 @@ func ProcessManifestList(ctx context.Context, srcDigest digest.Digest, srcManife
 		default:
 			return childManifests, manifestList, manifestDigest, nil
 		}
+	case *ocischema.DeserializedImageIndex:
+		manifestDigest := srcDigest
+		manifestList := t
 
+		filtered := make([]distribution.Descriptor, 0, len(t.Manifests))
+		for _, manifest := range t.Manifests {
+			// NOTE: We create a temporary ManifestDescriptor here so we can use the same `filterFn` as for ManifestList
+			// and avoid duplicating functionality.
+			m := manifestlist.ManifestDescriptor{
+				Descriptor: manifest.Descriptor(),
+				Platform: manifestlist.PlatformSpec{
+					Architecture: manifest.Platform.Architecture,
+					OS:           manifest.Platform.OS,
+					OSVersion:    manifest.Platform.OSVersion,
+					OSFeatures:   manifest.Platform.OSFeatures,
+					Variant:      manifest.Platform.Variant,
+				},
+			}
+			if !filterFn(&m, len(t.Manifests) > 1) {
+				klog.V(5).Infof("Skipping image %s for %#v from %s", manifest.Digest, manifest.Platform, ref)
+				continue
+			}
+			klog.V(5).Infof("Including image %s for %#v from %s", manifest.Digest, manifest.Platform, ref)
+			filtered = append(filtered, manifest)
+		}
+
+		if len(filtered) == 0 && !keepManifestList {
+			return nil, nil, "", nil
+		}
+
+		// if we're not keeping manifest lists and this one has been filtered, make a new one with
+		// just the filtered platforms.
+		if len(filtered) != len(t.Manifests) && !keepManifestList {
+			var err error
+			t, err = ocischema.FromDescriptors(filtered, nil)
+			if err != nil {
+				return nil, nil, "", fmt.Errorf("unable to filter source image %s image index: %v", ref, err)
+			}
+			_, body, err := t.Payload()
+			if err != nil {
+				return nil, nil, "", fmt.Errorf("unable to filter source image %s image index (bad payload): %v", ref, err)
+			}
+			manifestList = t
+			manifestDigest, err = registryclient.ContentDigestForManifest(t, srcDigest.Algorithm())
+			if err != nil {
+				return nil, nil, "", err
+			}
+			klog.V(5).Infof("Filtered image index to new digest %s:\n%s", manifestDigest, body)
+		}
+
+		for i, manifest := range filtered {
+			childManifest, err := manifests.Get(ctx, manifest.Digest, PreferManifestList)
+			if err != nil {
+				return nil, nil, "", fmt.Errorf("unable to retrieve source image %s manifest #%d from image index: %v", ref, i+1, err)
+			}
+			childManifests = append(childManifests, childManifest)
+		}
+
+		switch {
+		case len(childManifests) == 1 && !keepManifestList:
+			// Just return the single platform specific image
+			manifestDigest, err := registryclient.ContentDigestForManifest(childManifests[0], srcDigest.Algorithm())
+			if err != nil {
+				return nil, nil, "", err
+			}
+			klog.V(2).Infof("Chose %s/%s manifest from the image index.", t.Manifests[0].Platform.OS, t.Manifests[0].Platform.Architecture)
+			return nil, childManifests[0], manifestDigest, nil
+		default:
+			return childManifests, manifestList, manifestDigest, nil
+		}
 	default:
 		return nil, srcManifest, srcDigest, nil
 	}

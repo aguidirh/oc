@@ -611,6 +611,9 @@ func (o *MirrorImageOptions) plan() (*plan, error) {
 									case *schema2.DeserializedManifest:
 									case *schema1.SignedManifest:
 									case *ocischema.DeserializedManifest:
+									case *ocischema.DeserializedImageIndex:
+										// we do not need to upload layers in an image index
+										return
 									case *manifestlist.DeserializedManifestList:
 										// we do not need to upload layers in a manifestlist
 										return
