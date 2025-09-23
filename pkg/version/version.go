@@ -71,8 +71,8 @@ var (
 	// defaultReleaseInfoPadded may be replaced in the binary with Release Metadata: Version that overrides defaultVersion as
 	// a null-terminated string within the allowed character length. This allows a distributor to override the payload
 	// location without having to rebuild the source.
-	defaultVersionPadded = "\x00_RELEASE_VERSION_LOCATION_\x00XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\x00"
-	defaultVersionPrefix = "\x00_RELEASE_VERSION_LOCATION_\x00"
+	defaultVersionPadded = "\x00#RELEASE_VERSION_LOCATION#\x00XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\x00"
+	defaultVersionPrefix = "\x00#RELEASE_VERSION_LOCATION#\x00"
 	defaultVersionLength = len(defaultVersionPadded)
 )
 
